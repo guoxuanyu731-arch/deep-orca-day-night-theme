@@ -1,0 +1,5 @@
+# Deep Orca is an independent Harness profile bundle. The browser half is
+# discovered from package.json > dsh.client after this unique host row loads.
+- insert:
+    - id: ui-skin-deep-orca-day-night
+      name: '@dsh-external/dsh-client-ui-skin-deep-orca-day-night'
