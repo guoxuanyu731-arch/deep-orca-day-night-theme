@@ -1,0 +1,26 @@
+{
+  "id": "deep-orca-day-night",
+  "name": "深海虎鲸昼夜舱",
+  "nameEn": "Deep Orca Day & Night",
+  "version": "0.1.0",
+  "author": "guoxuanyu731-arch / Codex",
+  "tagline": "极光浅昼、深海夜巡与低干扰动态氛围",
+  "description": "一套面向 DeepSeek Harness Web GUI 的原创展示层主题。浅色模式使用极光白、海盐青与玻璃面板；深色模式使用深海蓝、荧光青与星点漂移。主题只修改客户端界面样式，不读取会话、凭据、模型请求或工作区文件。",
+  "tags": [
+    "orca",
+    "ocean",
+    "aurora",
+    "glass",
+    "day-night",
+    "animated",
+    "deepseek-harness"
+  ],
+  "accent": "#22d3ee",
+  "bodyAttr": "data-dsh-deep-orca",
+  "package": "@dsh-external/dsh-client-ui-skin-deep-orca-day-night",
+  "wiring": {
+    "id": "ui-skin-deep-orca-day-night",
+    "bundleWired": true
+  },
+  "order": 10
+}
