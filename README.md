@@ -138,7 +138,7 @@ body[data-dsh-deep-orca] {
 ## Accessibility · 无障碍
 
 - The toggle is a real `<button type="button">` with an `aria-label` that names the **target** mode (`切换到浅昼主题` / `切换到夜巡主题`), not the current one.
-- The ambient mote field and the orca ornament are `aria-hidden="true"` and `pointer-events: none`, so they never intercept clicks or reach the accessibility tree.
+- The ambient mote field is `aria-hidden="true"` and sets `pointer-events: none`, so it never intercepts clicks. The orca ornament is also `aria-hidden="true"`, but it does **not** set `pointer-events: none` today, so it can still receive clicks in its bottom-left corner.
 - Ambient animation is disabled under `prefers-reduced-motion: reduce`.
 - No focus trap, no keyboard interception, no `!important` rules on `outline`.
 
@@ -203,20 +203,20 @@ If you install it, this is the checklist worth walking / 安装后建议逐项�
 | `lib/client.js` | The browser-side implementation: all CSS, DOM injection, and teardown. |
 | `src/` | Thin source entries; `src/client/index.ts` re-exports the committed runtime. |
 | `docs/COMPATIBILITY.md` | Compatibility notes and the unverified status. |
-| `scripts/build.mjs` | Build script (`pnpm build`). |
+| `scripts/build.mjs` | Build script (`pnpm build`); asserts the required runtime files exist. |
 | `LICENSE` · `NOTICE` | MIT license and the originality / non-affiliation notice. |
 
 ---
 
 ## Development · 开发
 
-The first version intentionally stays small and dependency-light: the installable browser client is committed directly in `lib/client.js`, and `src/client/index.ts` re-exports that same implementation for source-oriented readers. There is no bundling step between the two.
+The first version intentionally stays small and dependency-light: the installable browser client is committed directly in `lib/client.js`, and `src/client/index.ts` re-exports that same implementation for source-oriented readers. There is no bundling step between the two — `pnpm build` only checks that the required runtime files are present.
 
-当前版本刻意保持轻量：可安装运行时代码直接提交在 `lib/client.js`，源码入口 `src/client/index.ts` 指向同一实现，二者之间没有额外的打包步骤。
+当前版本刻意保持轻量：可安装运行时代码直接提交在 `lib/client.js`，源码入口 `src/client/index.ts` 指向同一实现，二者之间没有额外的打包步骤——`pnpm build` 只做运行时文件的存在性校验。
 
 ```sh
 pnpm typecheck   # tsc -p tsconfig.json
-pnpm build       # node scripts/build.mjs
+pnpm build       # node scripts/build.mjs (runtime file presence check)
 ```
 
 Runtime code has no dependencies; `typescript` is the only dev dependency.
